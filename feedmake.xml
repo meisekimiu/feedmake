@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>Feedmake Example</title>
+    <link>https://github.com/meisekimiu/feedmake</link>
+    <description>This is an example file for Feedmake. In &quot;feedmake.xml&quot;, we can define all of the basic channel features, and then the Feedmake utility will populate items based on our repos git history.</description>
+    <language>en-us</language>
+  </channel>
+</rss>

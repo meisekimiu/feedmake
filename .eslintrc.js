@@ -19,6 +19,6 @@ module.exports = {
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": ["error"]
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
     }
 }
