@@ -1,4 +1,5 @@
 import * as xml2js from 'xml2js';
+import { DateTime } from 'luxon';
 import { version as PackageVersion } from '../package.json';
 import { FeedmakeOptions } from './argparse';
 import { GitCommit } from './gitlog';
@@ -13,6 +14,8 @@ export interface RssChannel {
   title: string;
   link: string;
   description: string;
+  pubDate?: string;
+  lastBuildDate?: string;
   generator?: string;
   item?: RssItem[];
 }
@@ -67,6 +70,14 @@ export class FeedBuilder {
   }
 
   public buildFeed(): string {
+    this.feed.rss.channel[0].pubDate = DateTime.fromJSDate(
+      new Date()
+    ).toRFC2822();
+    if (this.items.length > 0) {
+      this.feed.rss.channel[0].lastBuildDate = this.items[0].pubDate;
+    } else {
+      this.feed.rss.channel[0].lastBuildDate = this.feed.rss.channel[0].pubDate;
+    }
     this.feed.rss.channel[0].generator = `Feedmake v${PackageVersion}`;
     this.feed.rss.channel[0].item = this.items;
     const builder = new xml2js.Builder();
