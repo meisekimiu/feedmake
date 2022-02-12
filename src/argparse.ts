@@ -9,6 +9,7 @@ export interface FeedmakeOptions {
   number: number;
   include_empty_commits: boolean;
   author_email: boolean;
+  output: string;
 }
 
 export function parseArguments(): FeedmakeOptions {
@@ -32,6 +33,11 @@ export function parseArguments(): FeedmakeOptions {
   parser.add_argument('-a', '--author-email', {
     help: 'use Git author e-mail in RSS feed as <author> tag',
     action: 'store_true',
+  });
+  parser.add_argument('-o', '--output', {
+    help: 'name of output file',
+    default: 'rss.xml',
+    type: String,
   });
   parser.add_argument('repo', {
     help: "Path to site's git repo",
