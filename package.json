@@ -1,8 +1,8 @@
 {
   "name": "feedmake",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Generate a subscribable feed from a static website",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "bin": {
     "feedmake": "build/src/index.js"
   },
