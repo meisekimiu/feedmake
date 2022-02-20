@@ -17,7 +17,7 @@ To use Feedmake, run the command and supply it with a path to a git repository. 
 
 Feedmake automatically scans the git repo's directory for a `feedmake.xml` file, which should contain a basic RSS feed with no items. In this config file, you can add the `<channel>` name, description, image, etc, for your website.
 
-See the `feedmake.xml` file in this repo for an example of how it looks like (fun fact, if you clone this repo, you can run Feedmake on its own Git repo!).
+See the `feedmake.xml` file in this repo for an example of how it looks like (fun fact, if you clone this repo, you can run Feedmake on its own Git history!).
 
 ## Why is this even a program?
 The real idea behind this program is to generate RSS feeds for static websites. I've become a fan of small, personal, and static websites handwritten in basic HTML and I want more of them to come into existence. But... one thing social media has over decentralized websites is that you can follow friends and be notified whenever they make updates. Without an RSS feed, a personal website has to intentionally include some kind of changelog or journal to be updated, and even then, you still have to manually check it.
