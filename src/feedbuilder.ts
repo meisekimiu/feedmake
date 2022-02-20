@@ -78,7 +78,7 @@ export class FeedBuilder {
     } else {
       this.feed.rss.channel[0].lastBuildDate = this.feed.rss.channel[0].pubDate;
     }
-    this.feed.rss.channel[0].generator = `Feedmake v${PackageVersion}`;
+    this.feed.rss.channel[0].generator = `Feedmake v${PackageVersion} (https://github.com/meisekimiu/feedmake)`;
     this.feed.rss.channel[0].item = this.items;
     const builder = new xml2js.Builder();
     return builder.buildObject(this.feed);

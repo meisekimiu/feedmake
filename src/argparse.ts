@@ -9,6 +9,7 @@ export interface FeedmakeOptions {
   number: number;
   include_empty_commits: boolean;
   author_email: boolean;
+  include_minor_changes: boolean;
   output: string;
 }
 
@@ -38,6 +39,10 @@ export function parseArguments(): FeedmakeOptions {
     help: 'name of output file',
     default: 'rss.xml',
     type: String,
+  });
+  parser.add_argument('-m', '--include-minor-changes', {
+    help: 'include commits tagged as "minor" in the feed',
+    action: 'store_true',
   });
   parser.add_argument('repo', {
     help: "Path to site's git repo",
