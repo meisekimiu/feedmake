@@ -1,7 +1,7 @@
 import gitlog from 'gitlog';
 import { DateTime } from 'luxon';
 
-import { FeedmakeOptions } from './argparse';
+import { FeedmakeOptions } from './argparse.js';
 
 export interface GitCommit {
   authorDate: DateTime;
@@ -31,19 +31,21 @@ export class FeedmakeGitlog {
     return DateTime.fromJSDate(new Date());
   }
 
-  public getCommits(): GitCommit[] {
-    return gitlog({
-      repo: this.options.repo,
-      number: 100,
-      fields: [
-        'subject',
-        'body',
-        'authorName',
-        'authorDate',
-        'hash',
-        'authorEmail',
-      ],
-    })
+  public async getCommits(): Promise<GitCommit[]> {
+    return (
+      await gitlog({
+        repo: this.options.repo,
+        number: 100,
+        fields: [
+          'subject',
+          'body',
+          'authorName',
+          'authorDate',
+          'hash',
+          'authorEmail',
+        ],
+      })
+    )
       .filter((commit) => {
         let returnVal = true;
         if (!this.options.include_empty_commits) {

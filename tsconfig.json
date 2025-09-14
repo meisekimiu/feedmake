@@ -1,13 +1,12 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
+  "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
     "outDir": "build",
+    "module": "node18",
+    "moduleResolution": "node16",
+    "esModuleInterop": false,
     "resolveJsonModule": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
-  ]
+  "include": ["src"],
+  "exclude": ["**/*.spec.ts"]
 }
