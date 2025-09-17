@@ -1,4 +1,3 @@
-#!/usr/bin/env ts-node
 import { parseArguments } from './argparse.js';
 import { FeedmakeGitlog } from './gitlog.js';
 import { ConfigReader } from './configreader.js';
