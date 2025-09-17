@@ -1,9 +1,8 @@
 import { ArgumentParser } from 'argparse';
-import {
-  version as PackageVersion,
-  description as PackageDescription,
-} from '../package.json';
+import packageJson from '../package.json' assert { type: 'json' };
 
+const PackageDescription = packageJson.description;
+const PackageVersion = packageJson.version;
 export interface FeedmakeOptions {
   repo: string;
   number: number;
@@ -11,6 +10,7 @@ export interface FeedmakeOptions {
   author_email: boolean;
   include_minor_changes: boolean;
   output: string;
+  format_markdown: boolean;
 }
 
 export function parseArguments(): FeedmakeOptions {
@@ -42,6 +42,10 @@ export function parseArguments(): FeedmakeOptions {
   });
   parser.add_argument('-m', '--include-minor-changes', {
     help: 'include commits tagged as "minor" in the feed',
+    action: 'store_true',
+  });
+  parser.add_argument('-f', '--format-markdown', {
+    help: 'format markdown in commit bodies',
     action: 'store_true',
   });
   parser.add_argument('repo', {

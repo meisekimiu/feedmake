@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { FeedmakeOptions } from './argparse';
+import { FeedmakeOptions } from './argparse.js';
 
 export function writeFeedToFile(options: FeedmakeOptions, feed: string): void {
   const path = `${options.repo}/${options.output}`;

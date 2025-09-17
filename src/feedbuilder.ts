@@ -1,8 +1,11 @@
 import * as xml2js from 'xml2js';
 import { DateTime } from 'luxon';
-import { version as PackageVersion } from '../package.json';
-import { FeedmakeOptions } from './argparse';
-import { GitCommit } from './gitlog';
+import packageJson from '../package.json' assert { type: 'json' };
+import { FeedmakeOptions } from './argparse.js';
+import { GitCommit } from './gitlog.js';
+import { micromark } from 'micromark';
+
+const PackageVersion = packageJson.version;
 
 export interface RssFeed {
   rss: {
@@ -61,6 +64,11 @@ export class FeedBuilder {
       };
       if (commit.body) {
         item.description = commit.body.trim();
+        if (this.options.format_markdown) {
+          item.description = micromark(item.description, 'utf8', {
+            allowDangerousHtml: true,
+          });
+        }
       }
       if (this.options.author_email) {
         item.author = commit.authorEmail;
@@ -80,7 +88,9 @@ export class FeedBuilder {
     }
     this.feed.rss.channel[0].generator = `Feedmake v${PackageVersion} (https://github.com/meisekimiu/feedmake)`;
     this.feed.rss.channel[0].item = this.items;
-    const builder = new xml2js.Builder();
+    const builder = new xml2js.Builder({
+      cdata: this.options.format_markdown,
+    });
     return builder.buildObject(this.feed);
   }
 }

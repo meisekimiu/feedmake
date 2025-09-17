@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as xml2js from 'xml2js';
-import { FeedmakeOptions } from './argparse';
-import { RssFeed } from './feedbuilder';
+import { FeedmakeOptions } from './argparse.js';
+import { RssFeed } from './feedbuilder.js';
 
 export class ConfigReader {
   constructor(protected options: FeedmakeOptions) {}
