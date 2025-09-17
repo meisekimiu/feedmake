@@ -4,7 +4,7 @@
   "description": "Generate a subscribable feed from a static website",
   "main": "src/index.ts",
   "bin": {
-    "feedmake": "node build/src/index.js"
+    "feedmake": "build/src/index.js"
   },
   "type": "module",
   "scripts": {
